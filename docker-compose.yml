@@ -1,0 +1,19 @@
+version: '2'
+services:
+  ore-qt:
+    image: 'ore-qt'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ore-qt
+    devices:
+      - /dev/snd
+    volumes:
+      - /root/user/1000:/root/user/1000
+      - /usr/share/X11:/usr/share/X11
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./.galactrum:/root/.galactrum
+    environment:
+      - DISPLAY=unix${DISPLAY}
+      - XDG_RUNTIME_DIR=/run/user/1000
+
